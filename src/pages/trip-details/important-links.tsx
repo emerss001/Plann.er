@@ -23,7 +23,7 @@ export function ImportantLinks() {
       .then((response) => setLinks(response.data.links));
   }, [tripId]);
 
-  async function deleteLink(linkId: String) {
+  async function deleteLink(linkId: string) {
     await api.delete(`/trips/${tripId}/links/${linkId}`);
   }
 
