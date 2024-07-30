@@ -22,6 +22,7 @@ export function CreateTripPage() {
   const [destination, setDestination] = useState("");
   const [ownerName, setOwnerName] = useState("");
   const [ownerEmail, setOwnerEmail] = useState("");
+  const [buttonDisabled, setButtonDisabled] = useState(false);
   const [eventStartAndDates, setEventStartAndDates] = useState<
     DateRange | undefined
   >();
@@ -79,6 +80,7 @@ export function CreateTripPage() {
 
   async function createTrip(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    setButtonDisabled(true);
 
     if (!destination) {
       return;
@@ -168,6 +170,7 @@ export function CreateTripPage() {
           createTrip={createTrip}
           setOwnerName={setOwnerName}
           setOwnerEmail={setOwnerEmail}
+          setButtonDisabled={buttonDisabled}
         />
       )}
     </div>

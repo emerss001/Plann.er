@@ -1,4 +1,4 @@
-import { Mail, User } from "lucide-react";
+import { Loader2, Mail, User } from "lucide-react";
 import { FormEvent } from "react";
 import { Button } from "../../components/button";
 import { ModalRoot } from "../../components/Modal/ModalRoot";
@@ -13,6 +13,7 @@ interface ConfirmTripModalProps {
   createTrip: (event: FormEvent<HTMLFormElement>) => void;
   setOwnerName: (name: string) => void;
   setOwnerEmail: (email: string) => void;
+  setButtonDisabled: boolean;
 }
 
 export function ConfirmTripModal({
@@ -20,6 +21,7 @@ export function ConfirmTripModal({
   createTrip,
   setOwnerEmail,
   setOwnerName,
+  setButtonDisabled,
 }: ConfirmTripModalProps) {
   return (
     <ModalRoot>
@@ -59,8 +61,17 @@ export function ConfirmTripModal({
           onChange={(event) => setOwnerEmail(event.target.value)}
         />
 
-        <Button type="submit" variant="primary" size="full">
-          Confirmar criação da viagem
+        <Button
+          type="submit"
+          variant="primary"
+          size="full"
+          disabled={setButtonDisabled}
+        >
+          {setButtonDisabled ? (
+            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+          ) : (
+            <>Confirmar criação da viagem</>
+          )}
         </Button>
       </ModalForm>
     </ModalRoot>
