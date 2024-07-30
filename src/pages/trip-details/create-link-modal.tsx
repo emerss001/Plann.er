@@ -1,6 +1,6 @@
-import { Link2, Tag } from "lucide-react";
+import { Link2, Loader2, Tag } from "lucide-react";
 import { Button } from "../../components/button";
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
 import { useParams } from "react-router-dom";
 import { api } from "../../lib/axios";
 import { ModalRoot } from "../../components/Modal/ModalRoot";
@@ -17,10 +17,13 @@ interface CreateLinkModalProps {
 export function CreateLinkModal({
   closeCreateLinkModal,
 }: CreateLinkModalProps) {
+  const [buttonDisabled, setButtonDisabled] = useState(false);
+
   const { tripId } = useParams();
 
   async function createLink(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    setButtonDisabled(true);
 
     const data = new FormData(event.currentTarget);
 
@@ -64,8 +67,12 @@ export function CreateLinkModal({
           placeholder="Insira aqui o link"
         />
 
-        <Button variant="primary" size="full">
-          Salvar link
+        <Button variant="primary" size="full" disabled={buttonDisabled}>
+          {buttonDisabled ? (
+            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+          ) : (
+            <> Salvar link</>
+          )}
         </Button>
       </ModalForm>
     </ModalRoot>
