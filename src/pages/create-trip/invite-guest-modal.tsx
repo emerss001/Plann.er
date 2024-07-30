@@ -14,7 +14,7 @@ interface InviteGuestsModalProps {
   removeEmailFromInvites: (email: string) => void;
   addNewEmailToInvite: (event: FormEvent<HTMLFormElement>) => void;
 }
-//24:40
+
 export function InviteGuestsModal({
   addNewEmailToInvite,
   closeGuestModal,
